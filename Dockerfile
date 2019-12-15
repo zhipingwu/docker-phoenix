@@ -13,15 +13,17 @@ ARG HBASE_VER=hbase-1.2.5
 ARG PHOENIX_VER=4.10.0-HBase-1.2
 
 # Setup HBase binaries
-RUN wget -nv ${HBASE_URL} -O /hbase.tgz
+#RUN wget -nv ${HBASE_URL} -O /hbase.tgz
+COPY hbase-1.2.5-bin.tar.gz /hbase.tgz
 RUN tar -xzvf /hbase.tgz
 RUN mv /${HBASE_VER} /hbase
 
 # Setup Phoenix binaries
-RUN wget -nv ${PHOENIX_URL} -O /phoenix.tgz
+#RUN wget -nv ${PHOENIX_URL} -O /phoenix.tgz
+COPY apache-phoenix-4.10.0-HBase-1.2-bin.tar.gz /phoenix.tgz
 RUN tar -xzvf /phoenix.tgz
 RUN mv /apache-phoenix-${PHOENIX_VER}-bin /phoenix
 RUN cp /phoenix/phoenix-${PHOENIX_VER}-server.jar /hbase/lib
 
-ADD conf /hbase/conf
+ADD conf /hbase/conf 
 CMD source /root/.bashrc; sh /hbase/bin/start-hbase.sh; sleep 10; /phoenix/bin/queryserver.py
