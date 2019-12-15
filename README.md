@@ -23,6 +23,7 @@ This does *not* work on Docker for Mac.
 Run exposing HBase ports for thick JDBC client
 ```
 docker run -d -p 8765:8765 -p 2181:2181 -p 16010:16010 -p 16020:16020 -p 16030:16030 --hostname phoenix phoenix
+docker logs -f phoenix
 ```
 
 Add container hostname to /etc/hosts
