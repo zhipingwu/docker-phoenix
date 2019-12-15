@@ -25,5 +25,7 @@ RUN tar -xzvf /phoenix.tgz
 RUN mv /apache-phoenix-${PHOENIX_VER}-bin /phoenix
 RUN cp /phoenix/phoenix-${PHOENIX_VER}-server.jar /hbase/lib
 
+# lastly , we need a soft link , so python can run good
+RUN ln -s /usr/bin/python2 /usr/bin/python
 ADD conf /hbase/conf 
 CMD source /root/.bashrc; sh /hbase/bin/start-hbase.sh; sleep 10; /phoenix/bin/queryserver.py
