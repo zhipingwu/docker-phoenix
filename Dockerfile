@@ -4,6 +4,7 @@ RUN yum install -y java-1.8.0-openjdk-devel
 RUN yum install -y wget
 RUN yum install -y unzip
 RUN yum install -y net-tools
+RUN yum install -y python2
 RUN echo "export JAVA_HOME=/usr/lib/jvm/java" >> /root/.bashrc
 
 ARG HBASE_URL=https://archive.apache.org/dist/hbase/1.2.5/hbase-1.2.5-bin.tar.gz
